@@ -406,7 +406,17 @@ html.no-scroll, html.no-scroll body{
 }
 .bell__item:first-child{ border-top: none; }
 .bell__item p{ font-size: .85rem; color: var(--ink-soft); line-height: 1.5; }
-.bell__time{ display: block; font-size: .72rem; color: var(--mid); margin-top: .3rem; }
+.bell__time{ display: block; font-size: .72rem; color: var(--mid); margin-top: .3rem; font-variant-numeric: tabular-nums; }
+.bell__body{ display: block; }
+.bell__body--link{
+  margin: -.35rem -.55rem;
+  padding: .35rem .55rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background var(--speed) var(--ease);
+}
+.bell__body--link:hover{ background: var(--paper-dim); }
+.bell__body--link p{ color: var(--ink); font-weight: 500; }
 .bell__empty{ font-size: .82rem; color: var(--mid); padding: .4rem 0; }
 
 .nav__toggle{
@@ -896,66 +906,6 @@ html.no-scroll, html.no-scroll body{
 .to-top:hover{ background: var(--ink); color: var(--paper); }
 
 /* ==========================================================================
-   BLOG VIEW (separate page inside the same file)
-   ========================================================================== */
-.blog-view{
-  display: none;
-  min-height: 100svh;
-  padding: calc(76px + clamp(2.5rem, 6vw, 4.5rem)) 0 clamp(4rem, 9vw, 7rem);
-}
-body.is-blog .blog-view{ display: block; }
-body.is-blog #main{ display: none; }
-
-.blog-back{
-  display: inline-block;
-  margin-bottom: 2.2rem;
-  padding-bottom: 2px;
-  font-size: .9rem;
-  color: var(--mid);
-  border-bottom: 1px solid var(--line);
-  transition: color var(--speed) var(--ease), border-color var(--speed) var(--ease);
-}
-.blog-back:hover{ color: var(--ink); border-color: var(--ink); }
-.blog__intro{ color: var(--mid); max-width: 56ch; margin-top: -1.5rem; margin-bottom: 2.6rem; }
-
-.blog-list{ border-bottom: 1px solid var(--line); }
-.blog-row{
-  display: grid;
-  grid-template-columns: 170px 1fr;
-  gap: 1.5rem;
-  padding: 1.9rem 0;
-  border-top: 1px solid var(--line);
-  transition: padding-left var(--speed) var(--ease), opacity .7s var(--ease), transform .7s var(--ease);
-}
-.blog-row:hover{ padding-left: .7rem; }
-.blog-row__meta{
-  display: flex;
-  flex-direction: column;
-  gap: .15rem;
-  font-size: .88rem;
-  color: var(--mid);
-  font-variant-numeric: tabular-nums;
-}
-.blog-row__text h2{ font-size: 1.3rem; margin-bottom: .5rem; transition: color var(--speed) var(--ease); }
-.blog-row__text p{ color: var(--ink-soft); max-width: 58ch; font-size: .97rem; }
-.blog-row:hover h2{ color: var(--accent); }
-
-.blog-post{ max-width: 720px; animation: postIn .55s var(--ease) both; }
-.blog-post__meta{ display: flex; gap: 1.4rem; font-size: .88rem; color: var(--mid); }
-.blog-post__title{ font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin: .8rem 0 2.2rem; }
-.blog-post__body p{ font-size: 1.05rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 1.3rem; }
-.blog-post__body h3{ font-size: 1.25rem; margin: 2.2rem 0 .8rem; }
-.blog-post__body ul{ list-style: disc; padding-left: 1.3rem; margin-bottom: 1.3rem; color: var(--ink-soft); line-height: 1.8; }
-.blog-post__body li{ margin-bottom: .4rem; }
-.blog-post__note{ margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--mid); }
-@keyframes postIn{ from{ opacity: 0; transform: translateY(14px); } to{ opacity: 1; transform: none; } }
-
-@media (max-width: 640px){
-  .blog-row{ grid-template-columns: 1fr; gap: .7rem; }
-  .blog-row__meta{ flex-direction: row; gap: 1.2rem; }
-}
-
-/* ==========================================================================
    MUSIC (background player, icon at bottom-left)
    ========================================================================== */
 .music{
@@ -1150,7 +1100,7 @@ body.is-blog #main{ display: none; }
         </div>
       </div>
       <a href="#contact">Contact</a>
-      <a href="#blog" class="nav__blog">Blog</a>
+      <a href="https://mohitsharma4511note.blogspot.com/2026/11/mr-mohit-sharma.html" class="nav__blog" target="_blank" rel="noopener">Blog</a>
     </nav>
 
     <div class="nav__actions">
@@ -1586,107 +1536,6 @@ body.is-blog #main{ display: none; }
 
 </main>
 
-<!-- ============ BLOG (separate page, opened from the top menu) ============ -->
-<section class="blog-view" id="blogView" aria-label="Blog">
-  <div class="section__inner">
-
-    <!-- Blog list -->
-    <div class="blog-index" id="blogIndex">
-      <a href="#home" class="blog-back">Back to home</a>
-      <p class="section__kicker">Blog</p>
-      <h1 class="section__title">Notes and writing</h1>
-      <p class="blog__intro">Thoughts on building for the web, design details, and lessons learned along the way. These are sample posts, replace them with your own.</p>
-
-      <!-- CHANGE BLOG POSTS HERE (each row below links to a full post further down) -->
-      <div class="blog-list">
-        <a class="blog-row reveal" href="#blog/welcome">
-          <div class="blog-row__meta"><span>Oct 18, 2026</span><span>2 min read</span></div>
-          <div class="blog-row__text"><h2>Welcome to my blog</h2><p>Why I started writing, and what you can expect to find here.</p></div>
-        </a>
-        <a class="blog-row reveal" href="#blog/portfolio-html-css-js">
-          <div class="blog-row__meta"><span>Oct 10, 2026</span><span>4 min read</span></div>
-          <div class="blog-row__text"><h2>Building a portfolio with plain HTML, CSS and JavaScript</h2><p>Why I skipped the frameworks for my own site, and what it taught me about the basics.</p></div>
-        </a>
-        <a class="blog-row reveal" href="#blog/learning-web-dev">
-          <div class="blog-row__meta"><span>Sep 28, 2026</span><span>5 min read</span></div>
-          <div class="blog-row__text"><h2>Five habits that made learning web development faster</h2><p>Nothing fancy, just the routines that actually moved my skills forward.</p></div>
-        </a>
-        <a class="blog-row reveal" href="#blog/ui-details">
-          <div class="blog-row__meta"><span>Sep 15, 2026</span><span>4 min read</span></div>
-          <div class="blog-row__text"><h2>Small UI details that make a site feel premium</h2><p>Spacing, motion and typography choices that quietly raise the quality of a page.</p></div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Full posts (only one is shown at a time) -->
-    <article class="blog-post" data-post="welcome" hidden>
-      <a href="#blog" class="blog-back">All posts</a>
-      <div class="blog-post__meta"><span>Oct 18, 2026</span><span>2 min read</span></div>
-      <h1 class="blog-post__title">Welcome to my blog</h1>
-      <div class="blog-post__body">
-        <p>I have been building websites and small products for a few years now, and for most of that time the lessons stayed in my head or in scattered notes. This blog is where I plan to put them in order.</p>
-        <p>Expect short, practical posts: how I build things, what went wrong along the way, and the small habits that made the work easier. I will write about web development, design details, and the process of turning an idea into something people can actually use.</p>
-        <p>If something here helps you, or if you disagree with it, I would like to hear about it. You can reach me from the contact section on the home page.</p>
-      </div>
-      <p class="blog-post__note">Sample post. Replace this text with your own writing.</p>
-    </article>
-
-    <article class="blog-post" data-post="portfolio-html-css-js" hidden>
-      <a href="#blog" class="blog-back">All posts</a>
-      <div class="blog-post__meta"><span>Oct 10, 2026</span><span>4 min read</span></div>
-      <h1 class="blog-post__title">Building a portfolio with plain HTML, CSS and JavaScript</h1>
-      <div class="blog-post__body">
-        <p>When I started planning this site, the easy option was to reach for a framework. I chose plain HTML, CSS and JavaScript instead, for one reason: I wanted a site I could open, read and change without a build step.</p>
-        <h3>What stayed simple</h3>
-        <p>A single file loads fast, works offline once opened, and is easy to host anywhere. Theme switching, project filtering and scroll animations all turned out to need only a few dozen lines each.</p>
-        <h3>What took real effort</h3>
-        <ul>
-          <li>Keeping spacing and typography consistent across every section</li>
-          <li>Making each section work properly on small phones</li>
-          <li>Keeping animations subtle enough that they never get in the way</li>
-        </ul>
-        <p>The lesson was that the fundamentals go a long way. A careful layout and honest, readable content matter more than any library.</p>
-      </div>
-      <p class="blog-post__note">Sample post. Replace this text with your own writing.</p>
-    </article>
-
-    <article class="blog-post" data-post="learning-web-dev" hidden>
-      <a href="#blog" class="blog-back">All posts</a>
-      <div class="blog-post__meta"><span>Sep 28, 2026</span><span>5 min read</span></div>
-      <h1 class="blog-post__title">Five habits that made learning web development faster</h1>
-      <div class="blog-post__body">
-        <p>There is no shortcut to getting good at building for the web, but some routines make the same hours count for more. These are the five that worked for me.</p>
-        <ul>
-          <li>Build something small every week, even if nobody will see it</li>
-          <li>Read other people's code and ask why it was written that way</li>
-          <li>Break things on purpose to learn how they fail</li>
-          <li>Write down what you learn in your own words</li>
-          <li>Share work before it feels ready</li>
-        </ul>
-        <p>None of this is complicated. The hard part is repeating it long enough for the progress to show.</p>
-      </div>
-      <p class="blog-post__note">Sample post. Replace this text with your own writing.</p>
-    </article>
-
-    <article class="blog-post" data-post="ui-details" hidden>
-      <a href="#blog" class="blog-back">All posts</a>
-      <div class="blog-post__meta"><span>Sep 15, 2026</span><span>4 min read</span></div>
-      <h1 class="blog-post__title">Small UI details that make a site feel premium</h1>
-      <div class="blog-post__body">
-        <p>Most sites that feel polished are not doing anything exotic. They are getting a handful of small things right, consistently.</p>
-        <h3>Spacing first</h3>
-        <p>Generous, even spacing does more for a layout than any decoration. When in doubt, add more room around content, not more elements.</p>
-        <h3>Motion with restraint</h3>
-        <p>Animation should guide attention, not demand it. Short fades and gentle movement on scroll feel smooth; anything longer starts to feel slow.</p>
-        <h3>Typography</h3>
-        <p>Pick two typefaces at most, keep line lengths comfortable, and let size and weight create the hierarchy.</p>
-      </div>
-      <p class="blog-post__note">Sample post. Replace this text with your own writing.</p>
-    </article>
-
-  </div>
-</section>
-
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="section__inner footer__grid">
@@ -1700,7 +1549,7 @@ body.is-blog #main{ display: none; }
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#blog">Blog</a>
+      <a href="https://mohitsharma4511note.blogspot.com/2026/11/mr-mohit-sharma.html" target="_blank" rel="noopener">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -1780,13 +1629,50 @@ body.is-blog #main{ display: none; }
     } catch (e) { /* audio not available — fail silently */ }
   }
 
-  function pushNotification(text) {
+  // "Just now", "12 sec ago", "3 mins ago" ... shows how long ago a message arrived
+  function timeAgo(ts) {
+    const sec = Math.floor((Date.now() - ts) / 1000);
+    if (sec < 5) return 'Just now';
+    if (sec < 60) return sec + ' sec ago';
+    const min = Math.floor(sec / 60);
+    if (min < 60) return min + (min === 1 ? ' min ago' : ' mins ago');
+    const hr = Math.floor(min / 60);
+    return hr + (hr === 1 ? ' hr ago' : ' hrs ago');
+  }
+
+  function refreshNotificationTimes() {
+    if (!bellList) return;
+    bellList.querySelectorAll('.bell__item[data-ts]').forEach(function (li) {
+      li.querySelector('.bell__time').textContent = timeAgo(Number(li.getAttribute('data-ts')));
+    });
+  }
+  setInterval(refreshNotificationTimes, 1000);
+
+  // href is optional: when given, clicking the message opens that link in a new tab
+  function pushNotification(text, href) {
     if (!bellList) return;
     if (bellEmpty) bellEmpty.remove();
 
+    const now = Date.now();
     const item = document.createElement('li');
     item.className = 'bell__item';
-    item.innerHTML = '<p>' + text + '</p><span class="bell__time">Just now</span>';
+    item.setAttribute('data-ts', String(now));
+
+    const body = document.createElement(href ? 'a' : 'div');
+    body.className = 'bell__body';
+    if (href) {
+      body.href = href;
+      body.target = '_blank';
+      body.rel = 'noopener';
+      body.classList.add('bell__body--link');
+    }
+    const message = document.createElement('p');
+    message.textContent = text;
+    const time = document.createElement('span');
+    time.className = 'bell__time';
+    time.textContent = timeAgo(now);
+    body.append(message, time);
+    item.appendChild(body);
     bellList.prepend(item);
 
     unreadCount += 1;
@@ -1804,6 +1690,10 @@ body.is-blog #main{ display: none; }
     setTimeout(function () {
       pushNotification('Thanks for visiting \u2014 feel free to explore my projects and get in touch!');
     }, 8000);
+    // CHANGE BLOG NOTIFICATION HERE (arrives 35 seconds after the site opens)
+    setTimeout(function () {
+      pushNotification('Mr. Mohit Sharma Official Blog Page', 'https://mohitsharma4511note.blogspot.com/2026/11/mr-mohit-sharma.html');
+    }, 35000);
   }
 
   if (bellBtn && bellPanel && bellWrap) {
@@ -2008,7 +1898,6 @@ body.is-blog #main{ display: none; }
   staggerChildren('.projects__grid', '.project.reveal', 90);
   staggerChildren('.services__list', '.service.reveal', 80);
   staggerChildren('.timeline', '.timeline__item.reveal', 110);
-  staggerChildren('.blog-list', '.blog-row.reveal', 90);
 
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver(function (entries) {
@@ -2207,50 +2096,6 @@ body.is-blog #main{ display: none; }
       }, 4000);
     });
   }
-
-  /* ============================================================
-     BLOG VIEW (a separate page inside this file, opened from the menu)
-     ============================================================ */
-  const blogIndex = document.getElementById('blogIndex');
-  const blogPosts = document.querySelectorAll('.blog-post');
-  const siteTitle = document.title;
-
-  function showBlog(postId) {
-    let active = null;
-    blogPosts.forEach(function (post) {
-      const match = post.getAttribute('data-post') === postId;
-      post.hidden = !match;
-      if (match) active = post;
-    });
-    blogIndex.hidden = Boolean(active);
-    document.body.classList.add('is-blog');
-    document.title = (active ? active.querySelector('.blog-post__title').textContent : 'Blog') + ' \u2014 Mohit Sharma';
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  function showSite(hash) {
-    const wasBlog = document.body.classList.contains('is-blog');
-    document.body.classList.remove('is-blog');
-    document.title = siteTitle;
-    if (!wasBlog) return;
-    let target = null;
-    try { target = hash.length > 1 ? document.querySelector(hash) : null; } catch (err) { target = null; }
-    if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
-    else window.scrollTo({ top: 0, behavior: 'instant' });
-  }
-
-  function route() {
-    const hash = window.location.hash;
-    if (hash === '#blog' || hash.indexOf('#blog/') === 0) {
-      showBlog(hash.indexOf('#blog/') === 0 ? hash.slice(6) : '');
-    } else if (hash === '#main' && document.body.classList.contains('is-blog')) {
-      return;
-    } else {
-      showSite(hash);
-    }
-  }
-  window.addEventListener('hashchange', route);
-  route();
 
   /* ============================================================
      MUSIC (hidden SoundCloud player + floating notes while it plays)
